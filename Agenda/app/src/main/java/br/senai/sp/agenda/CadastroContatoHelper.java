@@ -47,4 +47,23 @@ public class CadastroContatoHelper {
 
         this.contato = contato;
     }
+
+    public boolean verificarCampos(){
+        if(txtNome.getText().toString().isEmpty()){
+            return false;
+        }
+        if(txtEndereco.getText().toString().isEmpty()){
+            return false;
+        }
+        if(txtEmail.getText().toString().isEmpty()){
+            return false;
+        }
+        if(txtLinkedin.getText().toString().isEmpty()){
+            return false;
+        }
+        if(txtTelefone.getText().toString().isEmpty()){
+            return false;
+        }
+        return true;
+    }
 }

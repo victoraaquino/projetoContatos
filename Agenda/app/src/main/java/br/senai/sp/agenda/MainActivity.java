@@ -1,9 +1,13 @@
 package br.senai.sp.agenda;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listaContatos;
     private ImageButton btnNovo;
+    CadastroContatoHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,5 +77,37 @@ public class MainActivity extends AppCompatActivity {
         listaContatos.setAdapter(listaFilmesAdapter);
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_context,menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+
+        final Contato contato = (Contato) listaContatos.getItemAtPosition(info.position);
+        final ContatoDAO dao = new ContatoDAO(MainActivity.this);
+        new AlertDialog.Builder(this).setTitle("Deletando Contato").
+                setMessage("Tem certeza que deseja deletar esse contato?").
+                setPositiveButton("sim", new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dao.excluir(contato);
+                        dao.close();
+                        Toast.makeText(MainActivity.this, "Excluir", Toast.LENGTH_SHORT).show();
+                        carregarLista();
+                    }
+                }).setNegativeButton("não", null).show();
+
+        return super.onContextItemSelected(item);
+    }
 }

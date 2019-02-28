@@ -23,9 +23,6 @@ public class CadastroActivity extends AppCompatActivity {
 
         helper = new CadastroContatoHelper(CadastroActivity.this);
 
-
-
-
     }
 
     @Override
@@ -45,10 +42,13 @@ public class CadastroActivity extends AppCompatActivity {
             case R.id.menu_salvar:
                 Contato contato = helper.getContato();
                 ContatoDAO dao = new ContatoDAO(CadastroActivity.this);
+                if(helper.verificarCampos()){
+                    dao.salvar(contato);
+                    Toast.makeText(CadastroActivity.this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                Toast.makeText(CadastroActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
 
-                dao.salvar(contato);
-                Toast.makeText(CadastroActivity.this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
-                finish();
                 break;
 
             case R.id.menu_limpar:

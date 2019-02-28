@@ -51,10 +51,16 @@ public class AtualizarActivity extends AppCompatActivity {
                  ContatoDAO dao = new ContatoDAO(AtualizarActivity.this);
 
                 //Toast.makeText(AtualizarActivity.this, String.valueOf(contato.getId()), Toast.LENGTH_SHORT).show();
-                dao.atualizar(contato);
-                dao.close();
-                Toast.makeText(AtualizarActivity.this, "Alterado com sucesso", Toast.LENGTH_SHORT).show();
-                finish();
+
+                if(helper.verificarCampos()){
+                    dao.atualizar(contato);
+                    dao.close();
+                    Toast.makeText(AtualizarActivity.this, "Alterado com sucesso", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+                Toast.makeText(AtualizarActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+
                 break;
 
             case R.id.menu_excluir:
