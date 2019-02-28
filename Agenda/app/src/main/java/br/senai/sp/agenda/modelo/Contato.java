@@ -1,6 +1,8 @@
 package br.senai.sp.agenda.modelo;
 
-public class Contato {
+import java.io.Serializable;
+
+public class Contato implements Serializable{
     int id;
     String nome,endereco,telefone,email,linkedin;
 
@@ -50,5 +52,10 @@ public class Contato {
 
     public void setLinkedin(String linkedin) {
         this.linkedin = linkedin;
+    }
+
+    @Override
+    public String toString(){
+        return this.nome;
     }
 }

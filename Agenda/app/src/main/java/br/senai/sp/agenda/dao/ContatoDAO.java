@@ -51,17 +51,16 @@ public class ContatoDAO extends SQLiteOpenHelper {
         dados.put("telefone", contato.getTelefone());
         dados.put("email", contato.getEmail());
         dados.put("linkedin", contato.getLinkedin());
-        dados.put("linkedin", contato.getLinkedin());
 
         db.insert("tbl_contato", null, dados);
     }
 
 
-    public List<Contato> getFilmes() {
+    public List<Contato> getContatos() {
 
         SQLiteDatabase db = getReadableDatabase();
 
-        String sql = "SELECT * FROM tbl_filme";
+        String sql = "SELECT * FROM tbl_contato";
 
         Cursor c = db.rawQuery(sql, null);
 
@@ -79,5 +78,34 @@ public class ContatoDAO extends SQLiteOpenHelper {
         }
 
         return contatos;
+    }
+
+    public void atualizar(Contato contato){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] params = {String.valueOf(contato.getId())};
+        ContentValues dados = getContentValues(contato);
+
+        db.update("tbl_contato", dados, "id = ?", params);
+    }
+
+    private ContentValues getContentValues(Contato contato) {
+        ContentValues dados = new ContentValues();
+
+        dados.put("nome", contato.getNome());
+        dados.put("endereco", contato.getEndereco());
+        dados.put("telefone", contato.getTelefone());
+        dados.put("email", contato.getEmail());
+        dados.put("linkedin", contato.getLinkedin());
+
+        return dados;
+    }
+
+    public void excluir(Contato contato){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] params = {String.valueOf(contato.getId())};
+
+        db.delete("tbl_contato", "id = ?", params);
     }
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -35,6 +36,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(cadastroContato);
             }
         });
+
+        listaContatos = findViewById(R.id.list_contatos);
+
+        registerForContextMenu(listaContatos);
+
+        listaContatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Contato contato = (Contato) listaContatos.getItemAtPosition(position);
+
+                Intent cadastro = new Intent(MainActivity.this, AtualizarActivity.class);
+                cadastro.putExtra("contato", contato);
+                startActivity(cadastro);
+            }
+        });
     }
 
     protected void onResume() {
@@ -45,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void carregarLista(){
         ContatoDAO dao = new ContatoDAO(this);
 
-        List<Contato> listaContato = dao.getFilmes();
+        List<Contato> listaContato = dao.getContatos();
 
         dao.close();
 
@@ -55,4 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         listaContatos.setAdapter(listaFilmesAdapter);
     }
+
+
 }

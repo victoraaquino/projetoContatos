@@ -7,17 +7,28 @@ import br.senai.sp.agenda.modelo.Contato;
 public class CadastroContatoHelper {
 
     private EditText txtNome,txtEndereco, txtTelefone, txtEmail, txtLinkedin;
+    private Contato contato;
 
     public CadastroContatoHelper(CadastroActivity activity){
         txtNome = activity.findViewById(R.id.txt_nome);
         txtEndereco = activity.findViewById(R.id.txt_endereco);
         txtTelefone = activity.findViewById(R.id.txt_telefone);
-        txtEmail = activity.findViewById(R.id.txt_linkedin);
+        txtEmail = activity.findViewById(R.id.txt_email);
+        txtLinkedin = activity.findViewById(R.id.txt_linkedin);
+
+        contato = new Contato();
+    }
+
+    public CadastroContatoHelper(AtualizarActivity activity){
+        txtNome = activity.findViewById(R.id.txt_nome);
+        txtEndereco = activity.findViewById(R.id.txt_endereco);
+        txtTelefone = activity.findViewById(R.id.txt_telefone);
+        txtEmail = activity.findViewById(R.id.txt_email);
         txtLinkedin = activity.findViewById(R.id.txt_linkedin);
     }
 
     public Contato getContato(){
-        Contato contato = new Contato();
+
         contato.setNome(txtNome.getText().toString());
         contato.setEndereco(txtEndereco.getText().toString());
         contato.setEmail(txtEmail.getText().toString());
@@ -27,7 +38,13 @@ public class CadastroContatoHelper {
         return contato;
     }
 
-    public Boolean verificarCampos(){
-        return true;
+    public void preencherFormulario(Contato contato) {
+        txtNome.setText(contato.getNome());
+        txtEndereco.setText(contato.getEndereco());
+        txtEmail.setText(contato.getEmail());
+        txtLinkedin.setText(contato.getLinkedin());
+        txtTelefone.setText(contato.getTelefone());
+
+        this.contato = contato;
     }
 }
