@@ -66,10 +66,16 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void limparCampos(){
-        txtNome.setText("");
-        txtEndereco.setText("");
-        txtTelefone.setText("");
-        txtEmail.setText("");
-        txtLinkedin.setText("");
+        this.txtNome = findViewById(R.id.txt_nome);
+        this.txtEndereco = findViewById(R.id.txt_endereco);
+        this.txtTelefone = findViewById(R.id.txt_telefone);
+        this.txtEmail = findViewById(R.id.txt_email);
+        this.txtLinkedin = findViewById(R.id.txt_linkedin);
+
+        this.txtNome.setText("");
+        this.txtEndereco.setText("");
+        this.txtTelefone.setText("");
+        this.txtEmail.setText("");
+        this.txtLinkedin.setText("");
     }
 }
