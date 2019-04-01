@@ -3,8 +3,9 @@ package br.senai.sp.agenda.modelo;
 import java.io.Serializable;
 
 public class Contato implements Serializable{
-    int id;
-    String nome,endereco,telefone,email,linkedin;
+    private int id;
+    private String nome,endereco,telefone,email,linkedin;
+    private byte[] foto;
 
     public int getId() {
         return id;
@@ -52,6 +53,14 @@ public class Contato implements Serializable{
 
     public void setLinkedin(String linkedin) {
         this.linkedin = linkedin;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
     @Override

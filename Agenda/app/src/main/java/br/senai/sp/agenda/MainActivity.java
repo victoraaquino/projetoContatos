@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.senai.sp.agenda.adapter.ContatosAdapter;
 import br.senai.sp.agenda.dao.ContatoDAO;
 import br.senai.sp.agenda.modelo.Contato;
 
@@ -65,16 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void carregarLista(){
         ContatoDAO dao = new ContatoDAO(this);
-
         List<Contato> listaContato = dao.getContatos();
-
         dao.close();
 
-        listaContatos = findViewById(R.id.list_contatos);
-
-        ArrayAdapter<Contato> listaFilmesAdapter = new ArrayAdapter<Contato>(this, android.R.layout.simple_list_item_1, listaContato);
-
-        listaContatos.setAdapter(listaFilmesAdapter);
+        ContatosAdapter adapter = new ContatosAdapter(this, listaContato);
+        listaContatos.setAdapter(adapter);
     }
 
     @Override
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dao.excluir(contato);
                         dao.close();
-                        Toast.makeText(MainActivity.this, "Excluir", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Excluido com sucesso", Toast.LENGTH_SHORT).show();
                         carregarLista();
                     }
                 }).setNegativeButton("não", null).show();
