@@ -5,4 +5,5 @@
     <color name="colorGreenLight">#25d366</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#FFFFFFFF</color>
 </resources>

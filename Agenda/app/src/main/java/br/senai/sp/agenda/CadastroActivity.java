@@ -95,7 +95,7 @@ public class CadastroActivity extends AppCompatActivity {
             if (requestCode == CAMERA_REQUEST) {
 
                 Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-                Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 256, 256, true);
+                Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
                 imgContato.setImageBitmap(bitmapReduzido);
 
             }

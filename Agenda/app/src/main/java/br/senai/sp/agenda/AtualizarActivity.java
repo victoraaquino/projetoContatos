@@ -30,7 +30,7 @@ import br.senai.sp.agenda.modelo.Contato;
 public class AtualizarActivity extends AppCompatActivity {
     public static final int GALERIA_REQUEST = 101;
     public static final int CAMERA_REQUEST = 102;
-    private ImageButton btnCamera, btnGaleria;
+    private ImageButton btnCamera, btnGaleria, btnLigar;
     private ImageView imgContato;
     private String caminhoFoto;
     private CadastroContatoHelper helper;
@@ -43,13 +43,14 @@ public class AtualizarActivity extends AppCompatActivity {
         helper = new CadastroContatoHelper(AtualizarActivity.this);
 
         final Intent intent = getIntent();
-        Contato contato = (Contato) intent.getSerializableExtra("contato");
+        final Contato contato = (Contato) intent.getSerializableExtra("contato");
         if(contato != null){
             helper.preencherFormulario(contato);
         }
 
         btnCamera = findViewById(R.id.btnimg_camera);
         btnGaleria = findViewById(R.id.btnimg_pasta);
+        btnLigar = findViewById(R.id.imgbutton_ligar);
         imgContato = findViewById(R.id.img_contato_atualizar);
 
         btnGaleria.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,16 @@ public class AtualizarActivity extends AppCompatActivity {
 
                 intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
                 startActivityForResult(intentCamera, CAMERA_REQUEST);
+            }
+        });
+
+        btnLigar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("tel:" + contato.getTelefone());
+                Intent intentLigar = new Intent (Intent.ACTION_DIAL, uri);
+
+                startActivity(intentLigar);
             }
         });
     }

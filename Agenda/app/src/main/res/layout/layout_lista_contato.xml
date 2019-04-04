@@ -8,9 +8,9 @@
     <ImageView
         android:id="@+id/img_contato_layout"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="70dp"
         android:layout_weight="1"
-        android:src="@drawable/ic_imagem_perfil"/>
+        android:src="@drawable/ic_imagem_perfil" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -37,7 +37,7 @@
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:src="@drawable/ic_telefone"
+                android:src="@drawable/ic_telefone_verde"
                 android:layout_marginRight="10dp"/>
 
             <TextView

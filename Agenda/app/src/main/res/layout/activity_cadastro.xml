@@ -38,7 +38,7 @@
 
         <ImageView
             android:id="@+id/img_contato_cadastro"
-            android:layout_width="256dp"
+            android:layout_width="match_parent"
             android:layout_height="256dp"
             android:src="@drawable/ic_imagem_perfil"/>
 
